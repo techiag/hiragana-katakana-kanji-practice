@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 
 <head>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<div class="page-header">
-  <h1>Hiragana Katakana Kanji Practice</h1>
-  <h3 id="choice-header">Please choose what to practice</h3>
-</div>
 
-<div class="choose-content">
-   <form name="form1" id="form1" action="/action_page.php">
-  Alphabet: <select name="alphabet" id="alphabet">
-    <option value="" selected="selected">Select alphabet</option>
-  </select>
-  <br><br>
-  Order: <select name="order" id="order">
-    <option value="" selected="selected">Select order</option>
-  </select>
-  <br><br>
-  Sets: <select name="chapter" id="chapter">
-    <option value="" selected="selected">Select # practice sets</option>
-  </select>
-  <br><br>
-  <input type="submit" value="Start">
-</form> 
-</div>
+  <div class="page-header">
+    <h1>Hiragana Katakana Kanji Practice     ひらがな カタカナ 漢字</h1>
+    <h3 id="choice-header">Made by techiag</h3>
+  </div>
+  
+  <div class="main-content">
+  <div class="choose-content">
+     <form name="form1" id="form1" action="/action_page.php">
+    Alphabet: <select name="alphabet" id="alphabet">
+      <option value="" selected="selected">Select alphabet</option>
+       <option value="hiragana">Hiragana</option>
+       <option value="Katakana">Katakana</option>
+       <option value="kanji">Kanji</option>
+    </select>
+    <br><br>
+    Order: <select name="order" id="order">
+      <option value="" selected="selected">Select order</option>
+       <option value="random">Random</option>
+       <option value="alphabetical">Alphabetical</option>
+    </select>
+    <br><br>
+    Sets: <select name="sets" id="sets">
+      <option value="" selected="selected">Select # practice sets</option>
+       <option value="one">1</option>
+       <option value="two">2</option>
+       <option value="three">3</option>
+       <option value="four">4</option>
+       <option value="five">5</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Start practicing">
+  </form> 
+  </div>
+  <div class="practice-content">
+    <p>こんにちは</p>
+  </div>
+    
+  </div>
   
 <body>
