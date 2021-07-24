@@ -11,7 +11,7 @@
     <h1>Hiragana Katakana Kanji Practice     ひらがな カタカナ 漢字</h1>
     <h3 id="choice-header">Made by techiag</h3>
   </div>
-  
+
   <div class="main-content">
   <div class="choose-content">
      <form name="form1" id="form1" action="/action_page.php">
@@ -37,11 +37,22 @@
        <option value="five">5</option>
     </select>
     <br><br>
-    <input type="submit" value="Start practicing">
+    <input id="submit-btn" type="submit" value="Start practicing">
   </form> 
+  <br>
+  <b>About the website:</b>
+  <p>After finding no free and reliable online tools for learning the characters in Japanese, I decided to make my own learning resource, and share it with my classmates! This website is customized to fit the JAP0501 Japanese Language Introduction course at NTNU (Norwegian University of Science and Technology) in Norway. Questions/issues with the page can be filed in the issues section on Github. Happy learning!</p>
   </div>
   <div class="practice-content">
-    <p>こんにちは</p>
+    <p>What sound does this letter make? Choose one option.</p>
+    <div class="question-word">
+      <p id="question-word-item">?</p>
+    </div>
+    <div class="question-buttons">
+      <button id="button-1">?</button>
+      <button id="button-2">?</button>
+      <button id="button-3">?</button>
+    </div>
   </div>
     
   </div>

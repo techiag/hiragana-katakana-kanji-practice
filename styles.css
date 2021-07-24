@@ -2,28 +2,41 @@
   background: orange;
   color: white;
   font-family: verdana;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-top: 5px;
+  padding: 5px 0px 10px 20px;
 }
 
 .choose-content {
-  padding-left: 20px;
-  padding-top: 10px;
+  padding: 10px 20px 10px 20px;
+  margin-top: 10px;
   font-family: verdana;
   float: left;
+  word-wrap: break-word;
+  width: 205px;
   border: 1px solid black;
-}
-
-.main-content {
-  display: inline-block;
 }
 
 .practice-content {
   width: 500px;
   float: left;
   margin-left: 170px;
-  margin-top: 10px;
+  margin-top: 20px;
   padding-left: 10px;
-  border: 1px solid black;
+  border: 3px solid black;
+  font-family: Verdana;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.question-word {
+  font-size: 72px;
+}
+
+button {
+  width: 100px;
+}
+
+#button-1, #button-2, #button-3 {
+  border-color: orange;
+  border-radius: 10px;
+  height: 40px;
 }
