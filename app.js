@@ -95,3 +95,64 @@ var katakana_dict = {
     "ヲ" : "wo",
     "ン": "n",
 }
+
+var kanji_dict = {
+    // Currently empty object, find right kanji for the course
+}
+
+const form = document.getElementById('practice-form');
+
+    form.addEventListener('submit', (event) => {
+        const alphabetForm = form.elements['alphabet'];
+        const orderForm = form.elements['order'];
+        const setsForm = form.elements['sets'];
+
+        var alphabet = alphabetForm.value;
+        var order = orderForm.value;
+        var sets = setsForm.value;
+
+        console.log('');
+        processForm(alphabet, order, sets);
+    })
+
+function processForm(alphabet, order, sets) {
+    
+    console.log("processing form....");
+    document.getElementById('question-word-item').innerHTML = "sucess!";
+    if (alphabet != "" && order != "" && sets != "") {
+        switch(alphabet) {
+            case "hiragana":
+                console.log("Hiragana YAY!");
+                console.log("code reached");
+                document.getElementById('question-word-item').innerHTML = "ka";
+                break;
+            case "katakana":
+                console.log("Katakana");
+                break;
+            case "kanji":
+                console.log("Kanji");
+                break;
+        }
+    }
+}
+
+function ordering(alphabet, order) {
+    if (order == "random") {
+        // Make new dictionary with 46 random keys and their corresponding values
+    }
+    else {
+        return alphabet;
+    }
+}
+
+function practiceHiragana(order, sets) {
+
+}
+
+function practiceKatakana(order, sets) {
+
+}
+
+function practiceKanji(order, sets) {
+
+}

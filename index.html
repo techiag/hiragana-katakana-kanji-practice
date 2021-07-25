@@ -1,60 +1,73 @@
 <!DOCTYPE html>
 
+<html lang="en">
+
 <head>
   <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
 </head>
 
 <body>
 
-
   <div class="page-header">
-    <h1>Hiragana Katakana Kanji Practice     ひらがな カタカナ 漢字</h1>
+    <h1>Hiragana Katakana Kanji Practice ひらがな カタカナ 漢字</h1>
     <h3 id="choice-header">Made by techiag</h3>
   </div>
 
   <div class="main-content">
-  <div class="choose-content">
-     <form name="form1" id="form1" action="/action_page.php">
-    Alphabet: <select name="alphabet" id="alphabet">
-      <option value="" selected="selected">Select alphabet</option>
-       <option value="hiragana">Hiragana</option>
-       <option value="Katakana">Katakana</option>
-       <option value="kanji">Kanji</option>
-    </select>
-    <br><br>
-    Order: <select name="order" id="order">
-      <option value="" selected="selected">Select order</option>
-       <option value="random">Random</option>
-       <option value="alphabetical">Alphabetical</option>
-    </select>
-    <br><br>
-    Sets: <select name="sets" id="sets">
-      <option value="" selected="selected">Select # practice sets</option>
-       <option value="one">1</option>
-       <option value="two">2</option>
-       <option value="three">3</option>
-       <option value="four">4</option>
-       <option value="five">5</option>
-    </select>
-    <br><br>
-    <input id="submit-btn" type="submit" value="Start practicing">
-  </form> 
-  <br>
-  <b>About the website:</b>
-  <p>After finding no free and reliable online tools for learning the characters in Japanese, I decided to make my own learning resource, and share it with my classmates! This website is customized to fit the JAP0501 Japanese Language Introduction course at NTNU (Norwegian University of Science and Technology) in Norway. Questions/issues with the page can be filed in the issues section on Github. Happy learning!</p>
-  </div>
-  <div class="practice-content">
-    <p>What sound does this letter make? Choose one option.</p>
-    <div class="question-word">
-      <p id="question-word-item">?</p>
+
+    <div class="choose-content">
+      <form name="practice-form" id="practice-form">
+
+        Alphabet: <select name="alphabet" id="alphabet">
+          <option value="" selected="selected">Select alphabet</option>
+          <option value="hiragana">Hiragana</option>
+          <option value="katakana">Katakana</option>
+          <option value="kanji">Kanji</option>
+        </select>
+        <br><br>
+        
+        Order: <select name="order" id="order">
+          <option value="" selected="selected">Select order</option>
+          <option value="random">Random</option>
+          <option value="alphabetical">Alphabetical</option>
+        </select>
+        <br><br>
+        
+        Sets: <select name="sets" id="sets">
+          <option value="" selected="selected">Select # practice sets</option>
+          <option value="one">1</option>
+          <option value="two">2</option>
+          <option value="three">3</option>
+          <option value="four">4</option>
+          <option value="five">5</option>
+        </select>
+        <br><br>
+        <input id="submit-btn" type="submit" value="Start practicing">
+      </form>
+      <br>
+      <b>About the website:</b>
+      <p>After finding no free and reliable online tools for learning the characters in Japanese, I decided to make my
+        own learning resource, and share it with my classmates! This website is customized to fit the JAP0501 Japanese
+        Language Introduction course at NTNU (Norwegian University of Science and Technology) in Norway.
+        Questions/issues with the page can be filed in the issues section on Github. Happy learning!</p>
     </div>
-    <div class="question-buttons">
-      <button id="button-1">?</button>
-      <button id="button-2">?</button>
-      <button id="button-3">?</button>
+
+    <div class="practice-content">
+      <p>What sound does this letter make? Choose one option.</p>
+      <div class="question-word">
+        <p id="question-word-item">?</p>
+      </div>
+      <div class="question-buttons">
+        <button id="button-1">?</button>
+        <button id="button-2">?</button>
+        <button id="button-3">?</button>
+      </div>
     </div>
+
   </div>
-    
-  </div>
-  
-<body>
+  <script src="app.js"></script>
+
+  <body>
+
+</html>
