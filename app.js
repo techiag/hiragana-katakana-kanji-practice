@@ -1,4 +1,12 @@
+/*
+Hiragana Katakana Kanji Practice website
+Created by Github user techiag
+Date: 24.07.2021
+Version: 1.0
+*/
+
 var hiragana_dict = {
+    // All 46 principal characters of Hiragana
     "あ" : "a", 
     "い" : "i", 
     "う": "u", 
@@ -48,6 +56,7 @@ var hiragana_dict = {
 }
 
 var katakana_dict = {
+    // All 46 principal characters of Katakana
     "ア" : "a", 
     "イ" : "i", 
     "ウ" : "u", 
@@ -97,52 +106,129 @@ var katakana_dict = {
 }
 
 var kanji_dict = {
-    // Currently empty object, find right kanji for the course
+    // Currently empty object, find the right kanji for the JAP0501 course
 }
 
+// Retrieve the correct form from the html document
 const form = document.getElementById('practice-form');
 
     form.addEventListener('submit', (event) => {
+        // Prevent the form from forcing page reload, because no server to conserve state
+        event.preventDefault();
+
+        // Retrieve the input values of the form
         const alphabetForm = form.elements['alphabet'];
         const orderForm = form.elements['order'];
         const setsForm = form.elements['sets'];
 
+        // Get the exact value of each input
         var alphabet = alphabetForm.value;
         var order = orderForm.value;
         var sets = setsForm.value;
 
-        console.log('');
+        console.log('Form values retrieved...');
         processForm(alphabet, order, sets);
     })
 
 function processForm(alphabet, order, sets) {
-    
-    console.log("processing form....");
-    document.getElementById('question-word-item').innerHTML = "sucess!";
+    // Process the input values from the form
+    console.log("Processing form....");
+
+    // Create an empty dictionary that will be set later
+    current_dict = {}
+
+    // Make sure choice has been made for practice set, no empty values allowed
     if (alphabet != "" && order != "" && sets != "") {
         switch(alphabet) {
             case "hiragana":
-                console.log("Hiragana YAY!");
-                console.log("code reached");
-                document.getElementById('question-word-item').innerHTML = "ka";
+                console.log("Alphabet: Hiragana");
+                current_dict = hiragana_dict;
                 break;
             case "katakana":
-                console.log("Katakana");
+                console.log("Alphabet: Katakana");
+                current_dict = katakana_dict;
                 break;
             case "kanji":
-                console.log("Kanji");
+                console.log("Alphabet: Kanji");
+                current_dict = kanji_dict;
                 break;
+        }
+    }
+
+    practiceSet(current_dict, order, sets);
+}
+
+function order(alphabet, order) {
+    // Orders an alphabet according to a specific requirement
+    if (order == "random") {
+        randomized_alphabet = {}
+        // Make new dictionary with 46 random keys and their corresponding values
+        return randomized_alphabet;
+    }
+    else {
+        // Alphabet is already sorted alphabetically, so do nothing
+        return alphabet;
+    }
+}
+
+function practice(dictionary, order, sets) {
+    // First iterate through number of sets wanted
+    for (let i = 0; i < sets; i++) {
+        // Then iterate through the elements in each practice set
+        for (element in dictionary) {
+            // Get the actual romanized equivalent of the Japanese letter
+            var actualValue = dictionary[element]
+            // Get the two other options from the pickRandomOptions help function
+            randomOptionsArray = pickRandomOptions(dictionary);
+            // Extract each of the options from the randomOptionsArray
+            option1 = randomOptionsArray[0];
+            option2 = randomOptionsArray[1];
         }
     }
 }
 
-function ordering(alphabet, order) {
-    if (order == "random") {
-        // Make new dictionary with 46 random keys and their corresponding values
+function pickRandomOptions(dictionary) {
+    // Help function to generate random romanized equivalents of Japanese letters
+    // Do differently, with loop and append, and make sure to not get correct option as option again!
+    var keys = Object.keys(dictionary);
+    rndInt = Math.floor(Math.random() * Object.keys(dictionary).length);
+    option1 = dictionary[keys[rndInt]];
+    anotherRndInt = Math.floor(Math.random() * Object.keys(dictionary).length);
+    option2 = dictionary[keys[rndInt]];
+    return [option1, option2];
+}
+
+function comparer() {
+    // Compares button press with which option is correct
+}
+
+function setButtonStrings(actualValue, option1, option2) {
+    // Sets the string values of the three option buttons
+    // Generate an offset to set the button strings with
+    randomOffset = Math.floor(Math.random() * 3);
+    // Create array from function parameters
+    optionArray = [actualValue, option1, option2];
+    randomizedOptionArray = []
+    // Iterate as many times as there are elements in the optionArray
+    for (let i = 0; i < length(optionArray); i++) {
+        // Modulo 3 function to get correct item
+        randomOffset = randomOffset % 3;
+        // Push the desired item to the new randomizedOptionArray
+        randomizedOptionArray.push(optionArray[randomOffset])
+        //Increment randomOffset to get next element from optionArray
+        randomOffset++;
     }
-    else {
-        return alphabet;
-    }
+
+    // Set document buttons and make sure strings are set
+    document.getElementById('button-1').innerHTML = randomOptionsArray[0].toString();
+    document.getElementById('button-1').innerHTML = randomOptionsArray[1].toString();
+    document.getElementById('button-1').innerHTML = randomOptionsArray[2].toString();
+}
+
+function setQuestionLetter(element) {
+    // Sets the string value of the Japanese letter in question
+    // Convert element's key to a string, how?
+    document.getElementById('question-word-item').innerHTML = element.toString();
 }
 
 function practiceHiragana(order, sets) {
