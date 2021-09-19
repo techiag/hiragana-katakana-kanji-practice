@@ -168,6 +168,7 @@ function processForm(alphabet, order, sets) {
         }
     }
 
+    setupFirstQuestionItem();
     practice(current_dict, order, sets);
 }
 
@@ -222,6 +223,10 @@ function practice(dictionary, order, sets) {
             option2 = randomOptionsArray[1];
         }
     }
+}
+
+function practiceLetter() {
+
 }
 
 // Generate random romanized equivalents of Japanese letters
@@ -315,10 +320,40 @@ function setButtonStrings(actualValue, option1, option2) {
     document.getElementById('button-1').innerHTML = randomOptionsArray[2].toString();
 }
 
-function setQuestionLetter(element) {
+function setQuestionLetter(questionItem) {
     // Sets the string value of the Japanese letter in question
     // Convert element's key to a string, how?
-    document.getElementById('question-word-item').innerHTML = element.toString();
+    document.getElementById('question-word-item').innerHTML = questionItem.toString();
+}
+
+// Increments the index for which element in current_dict to display
+function incrementDictionaryIndex(index) {
+    sessionStorage.setItem("index", index+1);
+}
+
+// Sets the correct letter at the start of a practice
+function setupFirstQuestionItem() {
+    questionItem = "";
+    sessionStorage.setItem("index", 0);
+    currentIndex = sessionStorage.getItem("index");
+    keys = Object.keys(current_dict);
+    questionItem = keys[currentIndex];
+    setQuestionLetter(questionItem);
+}
+
+// Sets the next letter as part of the practice
+function setNextQuestionItem() {
+    incrementDictionaryIndex();
+    questionItem = getKeyFromIndex();
+    setQuestionLetter(questionItem);
+}
+
+// Helper function to get a key from an index saved in HTML sessionStorage
+function getKeyFromIndex() {
+    currentIndex = sessionStorage.getItem("index");
+    keys = Object.keys(current_dict);
+    questionItem = keys[currentIndex];
+    return questionItem;
 }
 
 /*
