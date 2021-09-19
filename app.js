@@ -235,7 +235,7 @@ function pickRandomOptions() {
 
     // Maybe take in actual value as parameter instead?
     actualValueInJapanese = document.getElementById('question-word-item').innerHTML;
-    actualRomanizedValue = current_dict[keys[rndInt]]
+    actualRomanizedValue = current_dict[keys[actualValueInJapanese]];
 
     rndInt = Math.floor(Math.random() * Object.keys(current_dict).length);
     option1 = current_dict[keys[rndInt]];
@@ -243,10 +243,10 @@ function pickRandomOptions() {
     option1 = pickRandomOptionsHelper(option1, actualRomanizedValue);
 
     anotherRndInt = Math.floor(Math.random() * Object.keys(current_dict).length);
-    option2 = current_dict[keys[rndInt]];
+    option2 = current_dict[keys[anotherRndInt]];
 
     option2 = pickRandomOptionsHelper(option2, actualRomanizedValue);
-
+    console.log("Options: " + option1 + ", " + option2);
     return [option1, option2];
 }
 
@@ -262,17 +262,19 @@ function pickRandomOptionsHelper(option, actualRomanizedValue) {
 // Compares button press with which option is correct
 function comparer(btnValue) {
     actualValueInJapanese = document.getElementById('question-word-item').innerHTML;
-    actualValue = "";
-    console.log(btnValue);
-    
+    actualValue = current_dict[actualValueInJapanese];
+
+    /*
     if (current_dict == hiragana_dict) {
         actualValue = hiragana_dict[actualValueInJapanese];
     }
     else if (current_dict == katakana_dict) {
         actualValue = katakana_dict[actualValueInJapanese];
     }
+    */
     if (btnValue == actualValue) {
         console.log("Correct");
+        setNextQuestionItem();
     }
     else {
         console.log("Wrong");
@@ -302,33 +304,36 @@ function setButtonStrings(actualValue, option1, option2) {
     // Generate an offset to set the button strings with
     randomOffset = Math.floor(Math.random() * 3);
     // Create array from function parameters
-    optionArray = [actualValue, option1, option2];
-    randomizedOptionArray = []
+    optionArray = [current_dict[actualValue], option1, option2];
+    randomizedOptionsArray = []
     // Iterate as many times as there are elements in the optionArray
-    for (let i = 0; i < length(optionArray); i++) {
+    for (let i = 0; i < optionArray.length; i++) {
         // Modulo 3 function to get correct item
         randomOffset = randomOffset % 3;
         // Push the desired item to the new randomizedOptionArray
-        randomizedOptionArray.push(optionArray[randomOffset])
+        randomizedOptionsArray.push(optionArray[randomOffset])
         //Increment randomOffset to get next element from optionArray
         randomOffset++;
     }
 
     // Set document buttons and make sure strings are set
-    document.getElementById('button-1').innerHTML = randomOptionsArray[0].toString();
-    document.getElementById('button-1').innerHTML = randomOptionsArray[1].toString();
-    document.getElementById('button-1').innerHTML = randomOptionsArray[2].toString();
+    document.getElementById('button-1').innerHTML = randomizedOptionsArray[0].toString();
+    document.getElementById('button-2').innerHTML = randomizedOptionsArray[1].toString();
+    document.getElementById('button-3').innerHTML = randomizedOptionsArray[2].toString();
 }
 
-function setQuestionLetter(questionItem) {
+function setQuestionLetter(letter) {
     // Sets the string value of the Japanese letter in question
     // Convert element's key to a string, how?
-    document.getElementById('question-word-item').innerHTML = questionItem.toString();
+    document.getElementById('question-word-item').innerHTML = letter.toString();
 }
 
 // Increments the index for which element in current_dict to display
-function incrementDictionaryIndex(index) {
-    sessionStorage.setItem("index", index+1);
+function incrementDictionaryIndex() {
+    index = sessionStorage.getItem("index");
+    index++;
+    sessionStorage.setItem("index", index);
+    console.log(index);
 }
 
 // Sets the correct letter at the start of a practice
@@ -339,13 +344,28 @@ function setupFirstQuestionItem() {
     keys = Object.keys(current_dict);
     questionItem = keys[currentIndex];
     setQuestionLetter(questionItem);
+    options = pickRandomOptions();
+    actualValue = document.getElementById('question-word-item').innerHTML.toString();
+    console.log("Question word item: " + actualValue);
+    setButtonStrings(actualValue, options[0], options[1]);
+
 }
 
 // Sets the next letter as part of the practice
 function setNextQuestionItem() {
     incrementDictionaryIndex();
-    questionItem = getKeyFromIndex();
-    setQuestionLetter(questionItem);
+    if (sessionStorage.getItem("index") > Object.keys(current_dict).length) {
+        // Hide the practice content after set is finished
+        document.getElementById('practice-content').style.display = "none";
+    }
+    else {
+        questionItem = getKeyFromIndex();
+        console.log("Question item: " + questionItem)
+        setQuestionLetter(questionItem);
+        options = pickRandomOptions();
+        actualValue = document.getElementById('question-word-item').innerHTML.toString();
+        setButtonStrings(actualValue, options[0], options[1]);
+    }
 }
 
 // Helper function to get a key from an index saved in HTML sessionStorage
@@ -353,6 +373,7 @@ function getKeyFromIndex() {
     currentIndex = sessionStorage.getItem("index");
     keys = Object.keys(current_dict);
     questionItem = keys[currentIndex];
+    console.log("getKeyfromIndex: " + questionItem);
     return questionItem;
 }
 
