@@ -169,7 +169,6 @@ function processForm(alphabet, order, sets) {
     }
 
     setupFirstQuestionItem();
-    practice(current_dict, order, sets);
 }
 
 // Helper function that randomizes the order of a dictionary
@@ -209,26 +208,6 @@ function generateRandomNumber() {
     return newRandomNumber;
 }
 
-function practice(dictionary, order, sets) {
-    // First iterate through number of sets wanted
-    for (let i = 0; i < sets; i++) {
-        // Then iterate through the elements in each practice set
-        for (element in dictionary) {
-            // Get the actual romanized equivalent of the Japanese letter
-            var actualValue = dictionary[element]
-            // Get the two other options from the pickRandomOptions help function
-            randomOptionsArray = pickRandomOptions();
-            // Extract each of the options from the randomOptionsArray
-            option1 = randomOptionsArray[0];
-            option2 = randomOptionsArray[1];
-        }
-    }
-}
-
-function practiceLetter() {
-
-}
-
 // Generate random romanized equivalents of Japanese letters
 function pickRandomOptions() {
     var keys = Object.keys(current_dict);
@@ -263,15 +242,6 @@ function pickRandomOptionsHelper(option, actualRomanizedValue) {
 function comparer(btnValue) {
     actualValueInJapanese = document.getElementById('question-word-item').innerHTML;
     actualValue = current_dict[actualValueInJapanese];
-
-    /*
-    if (current_dict == hiragana_dict) {
-        actualValue = hiragana_dict[actualValueInJapanese];
-    }
-    else if (current_dict == katakana_dict) {
-        actualValue = katakana_dict[actualValueInJapanese];
-    }
-    */
     if (btnValue == actualValue) {
         console.log("Correct");
         setNextQuestionItem();
@@ -299,6 +269,7 @@ function compareBtn3() {
     comparer(btnValue);
 }
 
+// Set all the button strings correctly
 function setButtonStrings(actualValue, option1, option2) {
     // Sets the string values of the three option buttons
     // Generate an offset to set the button strings with
@@ -354,7 +325,7 @@ function setupFirstQuestionItem() {
 // Sets the next letter as part of the practice
 function setNextQuestionItem() {
     incrementDictionaryIndex();
-    if (sessionStorage.getItem("index") > Object.keys(current_dict).length) {
+    if (sessionStorage.getItem("index") >= Object.keys(current_dict).length) {
         // Hide the practice content after set is finished
         document.getElementById('practice-content').style.display = "none";
     }
@@ -376,89 +347,3 @@ function getKeyFromIndex() {
     console.log("getKeyfromIndex: " + questionItem);
     return questionItem;
 }
-
-/*
-function practiceHiragana(order, sets) {
-
-}
-function practiceKatakana(order, sets) {
-
-}
-function practiceKanji(order, sets) {
-
-}
-function practiceWithEventListener(dictionary, order, sets) {
-    // First iterate through number of sets wanted
-    for (let i = 0; i < sets; i++) {
-        // Then iterate through the elements in each practice set
-        for (element in dictionary) {
-            // Get the actual romanized equivalent of the Japanese letter
-            var actualValue = dictionary[element]
-            // Get the two other options from the pickRandomOptions help function
-            randomOptionsArray = pickRandomOptions(dictionary);
-            // Extract each of the options from the randomOptionsArray
-            option1 = randomOptionsArray[0];
-            option2 = randomOptionsArray[1];
-
-
-            var btnValue = "";
-
-            document.getElementById('button-1').addEventListener("click", comparerWithEventListener(btnValue, actualValue))
-        }
-    }
-}
-
-function comparerWithEventListener(btnValue, actualValue) {
-    // Compares button press with which option is correct
-    console.log("BtnValue: " + btnValue);
-    console.log("ActualValue: " + actualValue);
-    while (btnValue != actualValue) {
-        // Do nothing
-    }
-}
-
-function buttonClickTriggerEventBtn1() {
-    if (document.getElementById('button-1').value == )
-}
-
-*/
-
-// New try below!
-
-/*
-const startPracticeBtn = document.getElementById('submit-btn');
-const questionWordElement = document.getElementById('question-word');
-const answerButtons = document.getElementById('answerButtons');
-
-startPracticeBtn.addEventListener('click', startPractice);
-
-function startPractice() {
-    console.log("Practice started!");
-    setNextQuestion();
-}
-
-function setNextQuestion() {
-
-}
-
-function showQuestion() {
-    questionWordElement.innerText = question.question
-    // Btn event listener here with selectAnswer as the resulted function called
-}
-
-function selectAnswer(e) {
-    // Takes the event in as parameter
-    const selectedBtn = e.target;
-    const correct = selectedBtn.dataset.correct;
-}
-
-const questions = [
-    {
-        question: "Hi?",
-        answers: [
-            {text: "heyo", correct = true},
-            {text: "bye", correct = false}
-        ] 
-    }
-]
-*/
