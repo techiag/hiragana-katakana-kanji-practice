@@ -1,5 +1,5 @@
 /*
-Hiragana Katakana Kanji Practice website
+Hiragana Katakana Kanji Practice Website
 Created by Github user techiag
 Date: 24.07.2021
 Version: 1.0
@@ -109,6 +109,9 @@ var kanji_dict = {
     // Currently empty object, find the right kanji for the JAP0501 course
 }
 
+// Create an empty dictionary that will be set later
+current_dict = {}
+
 // Retrieve the correct form from the html document
 const form = document.getElementById('practice-form');
 
@@ -127,15 +130,16 @@ const form = document.getElementById('practice-form');
         var sets = setsForm.value;
 
         console.log('Form values retrieved...');
+
+        // Make sure practice content shows after form submit
+        document.getElementById('practice-content').style.display = "block";
+
         processForm(alphabet, order, sets);
     })
 
 function processForm(alphabet, order, sets) {
     // Process the input values from the form
     console.log("Processing form....");
-
-    // Create an empty dictionary that will be set later
-    current_dict = {}
 
     // Make sure choice has been made for practice set, no empty values allowed
     if (alphabet != "" && order != "" && sets != "") {
@@ -153,22 +157,55 @@ function processForm(alphabet, order, sets) {
                 current_dict = kanji_dict;
                 break;
         }
+        switch(order) {
+            case "random":
+                // Randomize the apperance of characters
+                current_dict = randomizeDictionary();
+                break;
+            case "alphabetical":
+                // Do nothing, as current_dict is already ordered alphabetically
+                break;
+        }
     }
 
-    practiceSet(current_dict, order, sets);
+    practice(current_dict, order, sets);
 }
 
-function order(alphabet, order) {
-    // Orders an alphabet according to a specific requirement
-    if (order == "random") {
-        randomized_alphabet = {}
-        // Make new dictionary with 46 random keys and their corresponding values
-        return randomized_alphabet;
+// Helper function that randomizes the order of a dictionary
+function randomizeDictionary() {
+    // Create empty object that will house the random key-value pairs
+    randomized_alphabet = {}
+
+    dictKeys = []
+    dictValues = []
+
+    dictKeys = Object.keys(current_dict);
+    dictValues = Object.values(current_dict);
+
+    oldRandomNumbers = [];
+
+    // Make new dictionary with 46 random keys and their corresponding values
+    for (let i = 0; i < Object.keys(current_dict).length; i++) {
+        newRandomNumber = generateRandomNumber();
+        // Make sure to not get duplicates (they will be removed in object)
+        while (oldRandomNumbers.includes(newRandomNumber)) {
+            newRandomNumber = generateRandomNumber();
+        }
+        oldRandomNumbers.push(newRandomNumber);
+
+        randomKey = dictKeys[newRandomNumber];
+        randomValue = dictValues[newRandomNumber];
+
+        // Add the newRandomNumber'th entry of current_dict into the new dictionary
+        randomized_alphabet[randomKey] = randomValue;
     }
-    else {
-        // Alphabet is already sorted alphabetically, so do nothing
-        return alphabet;
-    }
+    return randomized_alphabet;
+}
+
+// Help function to generate random number
+function generateRandomNumber() {
+    newRandomNumber = Math.floor(Math.random()*46)
+    return newRandomNumber;
 }
 
 function practice(dictionary, order, sets) {
@@ -179,7 +216,7 @@ function practice(dictionary, order, sets) {
             // Get the actual romanized equivalent of the Japanese letter
             var actualValue = dictionary[element]
             // Get the two other options from the pickRandomOptions help function
-            randomOptionsArray = pickRandomOptions(dictionary);
+            randomOptionsArray = pickRandomOptions();
             // Extract each of the options from the randomOptionsArray
             option1 = randomOptionsArray[0];
             option2 = randomOptionsArray[1];
@@ -187,19 +224,72 @@ function practice(dictionary, order, sets) {
     }
 }
 
-function pickRandomOptions(dictionary) {
-    // Help function to generate random romanized equivalents of Japanese letters
-    // Do differently, with loop and append, and make sure to not get correct option as option again!
-    var keys = Object.keys(dictionary);
-    rndInt = Math.floor(Math.random() * Object.keys(dictionary).length);
-    option1 = dictionary[keys[rndInt]];
-    anotherRndInt = Math.floor(Math.random() * Object.keys(dictionary).length);
-    option2 = dictionary[keys[rndInt]];
+// Generate random romanized equivalents of Japanese letters
+function pickRandomOptions() {
+    var keys = Object.keys(current_dict);
+
+    // Maybe take in actual value as parameter instead?
+    actualValueInJapanese = document.getElementById('question-word-item').innerHTML;
+    actualRomanizedValue = current_dict[keys[rndInt]]
+
+    rndInt = Math.floor(Math.random() * Object.keys(current_dict).length);
+    option1 = current_dict[keys[rndInt]];
+
+    option1 = pickRandomOptionsHelper(option1, actualRomanizedValue);
+
+    anotherRndInt = Math.floor(Math.random() * Object.keys(current_dict).length);
+    option2 = current_dict[keys[rndInt]];
+
+    option2 = pickRandomOptionsHelper(option2, actualRomanizedValue);
+
     return [option1, option2];
 }
 
-function comparer() {
-    // Compares button press with which option is correct
+// Helper function that makes sure options are not the same as actual value
+function pickRandomOptionsHelper(option, actualRomanizedValue) {
+    while (option == actualRomanizedValue) {
+        rndInt = Math.floor(Math.random() * Object.keys(current_dict).length);
+        option = current_dict[keys[rndInt]];
+    }
+    return option;
+}
+
+// Compares button press with which option is correct
+function comparer(btnValue) {
+    actualValueInJapanese = document.getElementById('question-word-item').innerHTML;
+    actualValue = "";
+    console.log(btnValue);
+    
+    if (current_dict == hiragana_dict) {
+        actualValue = hiragana_dict[actualValueInJapanese];
+    }
+    else if (current_dict == katakana_dict) {
+        actualValue = katakana_dict[actualValueInJapanese];
+    }
+    if (btnValue == actualValue) {
+        console.log("Correct");
+    }
+    else {
+        console.log("Wrong");
+    }
+}
+
+// Helper function to determine which of the buttons are pressed
+function compareBtn1() {
+    btnValue = document.getElementById('button-1').innerHTML;
+    comparer(btnValue);
+}
+
+// Helper function to determine which of the buttons are pressed
+function compareBtn2() {
+    btnValue = document.getElementById('button-2').innerHTML;
+    comparer(btnValue);
+}
+
+// Helper function to determine which of the buttons are pressed
+function compareBtn3() {
+    btnValue = document.getElementById('button-3').innerHTML;
+    comparer(btnValue);
 }
 
 function setButtonStrings(actualValue, option1, option2) {
@@ -231,14 +321,88 @@ function setQuestionLetter(element) {
     document.getElementById('question-word-item').innerHTML = element.toString();
 }
 
+/*
 function practiceHiragana(order, sets) {
 
 }
-
 function practiceKatakana(order, sets) {
 
 }
-
 function practiceKanji(order, sets) {
 
 }
+function practiceWithEventListener(dictionary, order, sets) {
+    // First iterate through number of sets wanted
+    for (let i = 0; i < sets; i++) {
+        // Then iterate through the elements in each practice set
+        for (element in dictionary) {
+            // Get the actual romanized equivalent of the Japanese letter
+            var actualValue = dictionary[element]
+            // Get the two other options from the pickRandomOptions help function
+            randomOptionsArray = pickRandomOptions(dictionary);
+            // Extract each of the options from the randomOptionsArray
+            option1 = randomOptionsArray[0];
+            option2 = randomOptionsArray[1];
+
+
+            var btnValue = "";
+
+            document.getElementById('button-1').addEventListener("click", comparerWithEventListener(btnValue, actualValue))
+        }
+    }
+}
+
+function comparerWithEventListener(btnValue, actualValue) {
+    // Compares button press with which option is correct
+    console.log("BtnValue: " + btnValue);
+    console.log("ActualValue: " + actualValue);
+    while (btnValue != actualValue) {
+        // Do nothing
+    }
+}
+
+function buttonClickTriggerEventBtn1() {
+    if (document.getElementById('button-1').value == )
+}
+
+*/
+
+// New try below!
+
+/*
+const startPracticeBtn = document.getElementById('submit-btn');
+const questionWordElement = document.getElementById('question-word');
+const answerButtons = document.getElementById('answerButtons');
+
+startPracticeBtn.addEventListener('click', startPractice);
+
+function startPractice() {
+    console.log("Practice started!");
+    setNextQuestion();
+}
+
+function setNextQuestion() {
+
+}
+
+function showQuestion() {
+    questionWordElement.innerText = question.question
+    // Btn event listener here with selectAnswer as the resulted function called
+}
+
+function selectAnswer(e) {
+    // Takes the event in as parameter
+    const selectedBtn = e.target;
+    const correct = selectedBtn.dataset.correct;
+}
+
+const questions = [
+    {
+        question: "Hi?",
+        answers: [
+            {text: "heyo", correct = true},
+            {text: "bye", correct = false}
+        ] 
+    }
+]
+*/

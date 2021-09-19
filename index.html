@@ -5,6 +5,7 @@
 <head>
   <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8">
+  <title>Hiragana Katakana Kanji Practice</title>
 </head>
 
 <body>
@@ -53,15 +54,15 @@
         Questions/issues with the page can be filed in the issues section of this repository on Github. Happy learning!</p>
     </div>
 
-    <div class="practice-content">
+    <div class="practice-content"  id="practice-content" style="display: none">
       <p>What sound does this letter make? Choose one option.</p>
       <div class="question-word">
         <p id="question-word-item">き</p>
       </div>
       <div class="question-buttons">
-        <button id="button-1">shi</button>
-        <button id="button-2">ki</button>
-        <button id="button-3">ta</button>
+        <button id="button-1" onclick="compareBtn1()">shi</button>
+        <button id="button-2" onclick="compareBtn2()">ki</button>
+        <button id="button-3" onclick="compareBtn3()">ta</button>
       </div>
     </div>
 
