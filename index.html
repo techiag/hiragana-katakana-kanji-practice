@@ -21,7 +21,6 @@
       <form name="practice-form" id="practice-form">
 
         Alphabet: <select name="alphabet" id="alphabet">
-          <option value="" selected="selected">Select alphabet</option>
           <option value="hiragana">Hiragana</option>
           <option value="katakana">Katakana</option>
           <option value="kanji">Kanji</option>
@@ -29,36 +28,26 @@
         <br><br>
         
         Order: <select name="order" id="order">
-          <option value="" selected="selected">Select order</option>
           <option value="random">Random</option>
           <option value="alphabetical">Alphabetical</option>
         </select>
         <br><br>
         
         Sets: <select name="sets" id="sets">
-          <option value="" selected="selected">Select # practice sets</option>
           <option value="one">1</option>
-          <option value="two">2</option>
-          <option value="three">3</option>
-          <option value="four">4</option>
-          <option value="five">5</option>
         </select>
         <br><br>
         <input id="submit-btn" type="submit" value="Start practicing">
       </form>
       <br>
-      <b>About the website:</b>
-      <p>After finding no free and reliable online tools for learning the characters of Japanese, I decided to make my
-        own learning resource, and share it with my classmates! This website is customized to fit the JAP0501 Japanese
-        Language Introduction course at NTNU (Norwegian University of Science and Technology).
-        Questions/issues with the page can be filed in the issues section of this repository on Github. Happy learning!</p>
     </div>
 
     <div class="practice-content"  id="practice-content" style="display: none">
-      <p>What sound does this letter make? Choose one option.</p>
+      <p>What is the romanized equivalent of this letter? <br><br>Choose one option.</p>
       <div class="question-word">
         <p id="question-word-item">き</p>
       </div>
+      <p id="user-feedback" style="color: white; padding: 0px;">Choose</p>
       <div class="question-buttons">
         <button id="button-1" onclick="compareBtn1()">shi</button>
         <button id="button-2" onclick="compareBtn2()">ki</button>

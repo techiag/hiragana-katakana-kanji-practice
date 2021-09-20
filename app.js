@@ -131,6 +131,10 @@ const form = document.getElementById('practice-form');
 
         console.log('Form values retrieved...');
 
+        // Make sure user feedback from last set isn't displayed
+        userFeedback = document.getElementById('user-feedback')
+        userFeedback.style.color = "white";
+
         // Make sure practice content shows after form submit
         document.getElementById('practice-content').style.display = "block";
 
@@ -242,12 +246,19 @@ function pickRandomOptionsHelper(option, actualRomanizedValue) {
 function comparer(btnValue) {
     actualValueInJapanese = document.getElementById('question-word-item').innerHTML;
     actualValue = current_dict[actualValueInJapanese];
+
+    userFeedback = document.getElementById('user-feedback')
+
     if (btnValue == actualValue) {
         console.log("Correct");
+        userFeedback.innerHTML = "Correct!";
+        userFeedback.style.color = "green";
         setNextQuestionItem();
     }
     else {
         console.log("Wrong");
+        userFeedback.innerHTML = "Wrong!";
+        userFeedback.style.color = "red";
     }
 }
 
