@@ -5,6 +5,7 @@
 <head>
   <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hiragana Katakana Kanji Practice</title>
 </head>
 
@@ -12,37 +13,31 @@
 
   <div class="page-header">
     <h1>Hiragana Katakana Kanji Practice ひらがな カタカナ 漢字</h1>
-    <h3 id="choice-header">Made by techiag</h3>
-  </div>
-
-  <div class="main-content">
-
     <div class="choose-content">
-      <form name="practice-form" id="practice-form">
+      <form name="practice-form" class="form-inline" id="practice-form" class="form-inline">
 
         Alphabet: <select name="alphabet" id="alphabet">
           <option value="hiragana">Hiragana</option>
           <option value="katakana">Katakana</option>
           <option value="kanji">Kanji</option>
         </select>
-        <br><br>
         
-        Order: <select name="order" id="order">
+        &nbspOrder: <select name="order" id="order">
           <option value="random">Random</option>
           <option value="alphabetical">Alphabetical</option>
         </select>
-        <br><br>
         
-        Sets: <select name="sets" id="sets">
+        &nbspSets: <select name="sets" id="sets">
           <option value="one">1</option>
         </select>
-        <br><br>
+        &nbsp&nbsp
         <input id="submit-btn" type="submit" value="Start practicing">
       </form>
-      <br>
     </div>
+  </div>
 
-    <div class="practice-content"  id="practice-content" style="display: none">
+  <div class="practice-card">
+    <div class="practice-content" id="practice-content" style="display: none">
       <p>What is the romanized equivalent of this letter? <br><br>Choose one option.</p>
       <div class="question-word">
         <p id="question-word-item">き</p>
@@ -54,7 +49,12 @@
         <button id="button-3" onclick="compareBtn3()">ta</button>
       </div>
     </div>
+  </div>
 
+  <div>
+    <footer>
+      <h3 id="choice-header">Made by Github user techiag</h3>
+    </footer>
   </div>
   <script src="app.js"></script>
 

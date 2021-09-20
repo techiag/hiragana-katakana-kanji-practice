@@ -1,32 +1,33 @@
 body {
   margin: 0px;
+  background-image: url("icons/japan.jpg");
+  font-family: Verdana;
 }
 
 .page-header {
   background: orange;
   color: white;
-  font-family: verdana;
   padding: 5px 0px 10px 20px;
+  border-bottom: 2px solid black;
 }
 
 .choose-content {
-  padding: 10px 20px 10px 20px;
   margin-top: 20px;
-  font-family: verdana;
-  float: left;
-  word-wrap: break-word;
-  width: 205px;
-  
+  width: 96%;
+}
+
+.practice-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 76vh;
 }
 
 .practice-content {
   width: 500px;
-  float: left;
-  margin-left: 170px;
-  margin-top: 110px;
   padding-left: 10px;
   border: 2px solid black;
-  font-family: Verdana;
   text-align: center;
   padding-bottom: 20px;
   background-color: white;
@@ -52,8 +53,12 @@ button {
 }
 
 #submit-btn {
-  border-color: orange;
+  border-color: green;
   border-radius: 5px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding: 5px;
 }
 
 #user-feedback {
@@ -66,4 +71,14 @@ select {
   border-radius: 4px;
   border-style: solid;
   border: 1px solid black;
+}
+
+footer {
+  color: orange;
+  text-shadow: 2px 2px black;
+  position: absolute;
+  bottom: 0;
+  width: 40%;
+  height: 60px;
+  padding-left: 20px;
 }
