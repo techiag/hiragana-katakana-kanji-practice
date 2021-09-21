@@ -9,6 +9,6 @@ This website lets you generate practice quizzes on Japanese characters. This inc
 It was made for and customized to fit the JAP0501 Japanese Language Introduction course at NTNU.
 
 # Page preview
-![](https://github.com/techiag/hiragana-katakana-kanji-practice/blob/main/icons/hiragana-katakana-kanji-practice-example-page.PNG)
+![](https://github.com/techiag/hiragana-katakana-kanji-practice/blob/main/icons/hiragana-katakana-kanji-practice-example-page-version2.PNG)
 
 # Setup
