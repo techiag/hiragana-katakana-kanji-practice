@@ -76,6 +76,5 @@ select {
 footer {
   color: orange;
   text-shadow: 2px 2px black;
-  width: 97%;
   padding-left: 20px;
 }
