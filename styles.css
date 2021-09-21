@@ -2,6 +2,7 @@ body {
   margin: 0px;
   background-image: url("icons/japan.jpg");
   font-family: Verdana;
+  height: auto;
 }
 
 .page-header {
@@ -20,8 +21,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 76vh;
+  height: 560px;
 }
 
 .practice-content {
@@ -76,9 +76,6 @@ select {
 footer {
   color: orange;
   text-shadow: 2px 2px black;
-  position: absolute;
-  bottom: 0;
-  width: 40%;
-  height: 60px;
+  width: 97%;
   padding-left: 20px;
 }
