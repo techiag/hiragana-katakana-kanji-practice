@@ -12,3 +12,4 @@ It was made for and customized to fit the JAP0501 Japanese Language Introduction
 ![](https://github.com/techiag/hiragana-katakana-kanji-practice/blob/main/icons/hiragana-katakana-kanji-practice-example-page-version2.PNG)
 
 # Setup
+No setup required. The project is running on Github Pages, which is hosted directly from my Github Repository.
