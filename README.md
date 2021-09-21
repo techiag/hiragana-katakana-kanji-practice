@@ -1,4 +1,6 @@
 ![](https://github.com/techiag/hiragana-katakana-kanji-practice/blob/main/icons/hiragana-karatana-kanji-github-readme-photo.PNG)
+# Go to
+https://techiag.github.io/hiragana-katakana-kanji-practice/
 
 # About
 This website lets you generate practice quizzes on Japanese characters. This includes:
