@@ -106,7 +106,23 @@ var katakana_dict = {
 }
 
 var kanji_dict = {
-    // Currently empty object, find the right kanji for the JAP0501 course
+    "一" : "ichi",
+    "ニ" : "ni",
+    "三" : "san",
+    "四" : "yon",
+    "五" : "go",
+    "六" : "roku",
+    "七" : "shichi",
+    "八" : "hachi",
+    "九" : "kyuu",
+    "十" : "juu",
+    "百" : "hyaku",
+    "千" : "sen",
+    "万" : "man",
+    "円" : "en",
+    "時" : "ji",
+    "日" : "hi",
+    "本" : "hon",
 }
 
 // Create an empty dictionary that will be set later
