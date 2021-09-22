@@ -121,8 +121,20 @@ var kanji_dict = {
     "万" : "man",
     "円" : "en",
     "時" : "ji",
-    "日" : "hi",
+    "日" : "ni", // Chinese reading of the kanji, native japanese reading is "hi"
     "本" : "hon",
+    "人" : "jin",
+    "月" : "tsuki", // Japanese reading
+    "火" : "hi", // Chinese reading
+    "水" : "mizu",
+    "木" : "ki", // Japanese reading
+    "金" : "kin", // Chinese reading
+    "土" : "tsuchi", // Japanese reading
+    "曜" : "yoo", // Chinese reading
+    "上" : "joo", // Chinese reading
+    "下" : "shita", // Japanese reading
+    "中" : "naka", // Japanese reading
+    "半" : "half", // Chinese reading
 }
 
 // Create an empty dictionary that will be set later
