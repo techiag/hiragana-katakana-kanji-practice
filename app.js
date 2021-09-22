@@ -134,7 +134,7 @@ var kanji_dict = {
     "上" : "joo", // Chinese reading
     "下" : "shita", // Japanese reading
     "中" : "naka", // Japanese reading
-    "半" : "half", // Chinese reading
+    "半" : "han", // Chinese reading
 }
 
 // Create an empty dictionary that will be set later
