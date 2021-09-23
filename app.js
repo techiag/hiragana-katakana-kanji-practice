@@ -121,34 +121,34 @@ var kanji_dict = {
     "万" : "man",
     "円" : "en",
     "時" : "ji",
-    "日" : "ni", // Chinese reading of the kanji, native japanese reading is "hi"
+    "日" : "ni",
     "本" : "hon",
     "人" : "jin",
-    "月" : "tsuki", // Japanese reading
-    "火" : "hi", // Chinese reading
+    "月" : "tsuki",
+    "火" : "hi",
     "水" : "mizu",
-    "木" : "ki", // Japanese reading
-    "金" : "kin", // Chinese reading
-    "土" : "tsuchi", // Japanese reading
-    "曜" : "yoo", // Chinese reading
-    "上" : "joo", // Chinese reading
-    "下" : "shita", // Japanese reading
-    "中" : "naka", // Japanese reading
-    "半" : "han", // Chinese reading
-    "山" : "yama", // Japanese reading
+    "木" : "ki",
+    "金" : "kin",
+    "土" : "tsuchi",
+    "曜" : "yoo",
+    "上" : "joo",
+    "下" : "shita",
+    "中" : "naka",
+    "半" : "han",
+    "山" : "yama",
     "川" : "kawa",
     "元" : "gen",
     "気" : "ki",
     "天" : "ten",
     "私" : "watashi",
-    "今" : "ima", // Japanese reading
-    "田" : "ta", // Japanese reading
-    "女" : "onna", // Japanese reading
-    "男" : "otoko", // Japanese reading
-    "見" : "mi", // Japanese reading
-    "行" : "i", // Japanese reading
-    "食" : "ta", // Japanese reading
-    "飲" : "no", // Japanese reading
+    "今" : "ima",
+    "田" : "ta",
+    "女" : "onna",
+    "男" : "otoko",
+    "見" : "mi",
+    "行" : "i",
+    "食" : "ta",
+    "飲" : "no",
 }
 
 // Create an empty dictionary that will be set later
@@ -250,7 +250,7 @@ function randomizeDictionary() {
 
 // Help function to generate random number
 function generateRandomNumber() {
-    newRandomNumber = Math.floor(Math.random()*46)
+    newRandomNumber = Math.floor(Math.random()*Object.keys(current_dict).length);
     return newRandomNumber;
 }
 
