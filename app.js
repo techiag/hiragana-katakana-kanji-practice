@@ -135,6 +135,20 @@ var kanji_dict = {
     "下" : "shita", // Japanese reading
     "中" : "naka", // Japanese reading
     "半" : "han", // Chinese reading
+    "山" : "yama", // Japanese reading
+    "川" : "kawa",
+    "元" : "gen",
+    "気" : "ki",
+    "天" : "ten",
+    "私" : "watashi",
+    "今" : "ima", // Japanese reading
+    "田" : "ta", // Japanese reading
+    "女" : "onna", // Japanese reading
+    "男" : "otoko", // Japanese reading
+    "見" : "mi", // Japanese reading
+    "行" : "i", // Japanese reading
+    "食" : "ta", // Japanese reading
+    "飲" : "no", // Japanese reading
 }
 
 // Create an empty dictionary that will be set later
